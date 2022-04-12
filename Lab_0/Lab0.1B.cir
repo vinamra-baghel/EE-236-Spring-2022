@@ -1,0 +1,23 @@
+Vinamra Baghel 190010070 Shunt Clipper
+
+.include Diode_1N914.txt
+
+*Netlist
+r1 in out 1k
+D out b 1N914
+Vb gnd b 2
+Vin in gnd sin(0 10 1k 0 0 0)
+
+*Analysis
+.tran 1u 6m
+*Control
+.control
+run
+set color0 = white
+set color1 = black
+set color2 = red
+set color3 = blue
+set xbrushwidth = 2
+plot V(out) vs V(in)
+.endc
+.end

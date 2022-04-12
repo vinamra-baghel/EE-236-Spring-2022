@@ -1,0 +1,25 @@
+Vinamra Baghel 190010070 Zener IV Characteristics
+
+.include zener.txt
+
+*Netlist
+r1 in 1 100
+r2 3 gnd 100
+r3 1 gnd 1k
+X 1 2 DI_1N4734A
+Vdr 2 3 0
+Vin in gnd 0
+
+*Analysis
+.dc Vin -20 10 0.01
+
+.control
+run
+set color0 = white
+set color1 = black
+set color2 = red
+set color3 = blue
+set xbrushwidth = 2
+plot I(Vdr) vs V(1)-V(2)
+.endc
+.end

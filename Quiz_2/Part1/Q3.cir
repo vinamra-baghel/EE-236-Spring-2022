@@ -1,0 +1,27 @@
+Vinamra Baghel 190010070 Transmission Gate
+
+.include PMOS_NMOS.txt
+
+*Netlist
+M1 in gn out bn cmosn L=0.4u W=4u AS={2*4u*0.4u} PS={2*4u+4*0.4u} AD={2*4u*0.4u} PD={2*4u+4*0.4u}
+M2 in gp out bp cmosp L=0.4u W=4u AS={2*4u*0.4u} PS={2*4u+4*0.4u} AD={2*4u*0.4u} PD={2*4u+4*0.4u}
+Rl out 0 10k
+Vgn gn 0 3.3
+Vbn bn 0 0
+Vgp gp 0 -3.3
+Vbp bp 0 0
+Vin in 0 -3.3
+
+*Analysis
+.dc Vin -3.3 3.3 0.01
+
+.control
+run
+set color0 = white
+set color1 = black
+
+plot V(out) vs V(in)
+let ron = abs((V(in)-V(out))/I(Vin))
+plot ron vs V(in)
+.endc
+.end

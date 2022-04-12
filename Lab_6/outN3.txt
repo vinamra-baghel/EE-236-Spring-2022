@@ -1,0 +1,8 @@
+
+Circuit: vinamra baghel 190010070 part 3 id-vgs characteristics
+
+vt1 = 7.664723e-01
+vt2 = 1.131736e+00
+vt3 = 1.407589e+00
+vt4 = 1.638707e+00
+vt5 = 1.841647e+00

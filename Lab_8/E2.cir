@@ -1,0 +1,27 @@
+Vinamra Baghel 190010070 BJT Gummel Plot
+.include BC547.txt
+
+*Netlist
+Q1 c b gnd bc547a
+Vcb c bb 5
+Vbd b bb 0
+Vbe bb gnd 0
+
+*Analysis
+.dc Vbe 0.3 1.2 0.01
+
+.control
+run
+set color0 = white
+set color1 = black
+set color2 = red
+set color3 = blue
+set color4 = green
+set color5 = orange
+
+plot ylog (-I(Vcb)), (-I(Vbd)) vs V(b)-V(e)
+let beta = I(Vcb)/I(Vbd)
+let Ic = -1*I(Vcb)
+plot beta vs Ic
+.endc
+.end

@@ -1,0 +1,27 @@
+Vinamra Baghel 190010070 IV Characteristics Part 1
+
+.include Diode_1N914.txt
+.include BZT52C18S.txt
+
+*Netlist
+r1 in out1 100
+*D1 1 gnd 1N914
+X1 1 gnd DI_BZT52C18S
+Vd1 out1 1 0
+Vin in gnd 0
+
+*Analysis
+.dc vin -30 10 0.1 temp 20 80 10
+
+*.temp 80
+.control
+run
+set color0 = white
+set color1 = black
+set color2 = red
+set color3 = blue
+set xbrushwidth = 3
+plot I(Vd1) vs V(1)
+*meas dc v1 find V(1) when I(Vd1) = -0.5m
+.endc
+.end

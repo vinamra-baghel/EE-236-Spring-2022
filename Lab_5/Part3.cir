@@ -1,0 +1,32 @@
+Vinamra Baghel 190010070 Part 3 Id-Vgs Characteristics
+
+.include pmos.txt
+
+*Netlist
+M1 d g s b ALD1107
+Vgs g s dc -5
+Vds d s dc -200m
+Vsb s b dc 0
+Vb b 0 dc 0
+
+*Analysis
+.dc Vgs -5 0 0.01 Vsb 0 -4 -1
+
+.control
+run
+set color0 = white
+set color1 = black
+set color2 = red
+set color3 = blue
+set xbrushwidth = 3
+
+let Id1 = I(Vds)[0, 500]
+let Id2 = I(Vds)[501, 1001]
+let Id3 = I(Vds)[1002, 1502]
+let Id4 = I(Vds)[1503, 2003]
+let Id5 = I(Vds)[2004, 2504]
+let Vgs = V(g)-V(s)
+
+plot Id1 Id2 Id3 Id4 Id5
+.endc
+.end

@@ -1,0 +1,56 @@
+Vinamra Baghel 190010070 BJT Parameters in CB configuration
+.include BC547.txt
+
+*Netlist
+Q1 c b e bc547a
+r1 2 c 100
+Vbd b gnd 0
+V1 1 gnd -1
+V2 2 gnd 12
+Ie e 1 0
+
+*Analysis
+.dc V2 -5 15 0.1 Ie 0 10m 1m
+
+.control
+run
+set color0 = white
+set color1 = black
+set color2 = red
+set color3 = blue
+set color4 = green
+set color5 = orange
+set color6 = navy
+set color7 = maroon
+
+let Vc1 = V(c)[0, 200]
+let Vc2 = V(c)[201, 401]
+let Vc3 = V(c)[402, 602]
+let Vc4 = V(c)[603, 803]
+let Vc5 = V(c)[804, 1004]
+let Vc6 = V(c)[1005, 1205]
+let Vc7 = V(c)[1206, 1406]
+let Vc8 = V(c)[1407, 1607]
+let Vc9 = V(c)[1608, 1808]
+let Vc10 = V(c)[1809, 2009]
+let Vc11 = V(c)[2010, 2210]
+
+let Ic1 = -I(V2)[0, 200]
+let Ic2 = -I(V2)[201, 401]
+let Ic3 = -I(V2)[402, 602]
+let Ic4 = -I(V2)[603, 803]
+let Ic5 = -I(V2)[804, 1004]
+let Ic6 = -I(V2)[1005, 1205]
+let Ic7 = -I(V2)[1206, 1406]
+let Ic8 = -I(V2)[1407, 1607]
+let Ic9 = -I(V2)[1608, 1808]
+let Ic10 = -I(V2)[1809, 2009]
+let Ic11 = -I(V2)[2010, 2210]
+
+plot Ic1 vs Vc1 Ic2 vs Vc2 Ic3 vs Vc3 Ic4 vs Vc4 Ic5 vs Vc5 Ic6 vs Vc6 Ic7 vs Vc7 Ic8 vs Vc8 Ic9 vs Vc9 Ic10 vs Vc10 Ic11 vs Vc11
+
+let beta = I(V2)[401]/I(Vbd)[401]
+let alpha = beta/(1+beta)
+print alpha beta
+.endc
+.end

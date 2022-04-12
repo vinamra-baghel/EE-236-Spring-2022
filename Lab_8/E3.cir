@@ -1,0 +1,33 @@
+Vinamra Baghel 190010070 BJT Small Signal Parameters
+.include BC547.txt
+
+*Netlist
+Q1 c b e bc547a
+r1 1 bb 100k
+r2 2 cc 1k
+Vc c 3 0
+Vb b 1 0
+Ve e gnd 0
+Vbb bb gnd 2.843
+Vcc cc gnd 9.5
+Ic 2 3 4.5m
+
+*Analysis
+.op
+
+.control
+run
+set color0 = white
+set color1 = black
+set color2 = red
+set color3 = blue
+set color4 = green
+set color5 = orange
+
+let gm = -I(Vc)/26m
+let beta = I(Vc)/I(Vb)
+let rpi = -beta/gm
+let ro = -73/I(Vc)
+print gm beta rpi ro
+.endc
+.end

@@ -1,0 +1,40 @@
+Vinamra Baghel 190010070 Voltage Regulator
+
+.include schottky_BAT960.txt
+.include bc547.txt
+.include zener.txt
+.include ua741.txt
+
+*Netlist
+rl out1 out2 1k
+X1 in out2 BAT960
+X2 out1 in BAT960
+X3 out1 gnd BAT960
+X4 gnd out2 BAT960
+rl1 out2 out1 1k
+cl out2 out1 500u
+Vin in gnd sin(0 20 50 0 0 0)
+
+rs out2 p 52.64
+r1 out n 6k
+r2 n out1 10k
+rl2 out out1 1k
+Xz out1 p DI_1N4734A
+Q out2 b out bc547a
+Xo p n pp nn b ua741
+Vpp pp gnd 12
+Vnn nn gnd -12
+
+*Analysis
+.tran 1u 50m
+
+.control
+run
+set color0 = white
+set color1 = black
+set color2 = red
+set color3 = blue
+set xbrushwidth = 2
+plot V(out)-V(out1)
+.endc
+.end

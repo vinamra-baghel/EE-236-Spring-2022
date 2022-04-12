@@ -1,0 +1,7 @@
+
+Circuit: vinamra baghel 190010070 bjt parameters in ce configuration
+
+alpha = 9.952710e-01
+beta = 2.104609e+02
+va1 = -7.33492e+01
+va2 = -7.27727e+01

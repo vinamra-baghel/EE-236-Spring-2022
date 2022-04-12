@@ -1,0 +1,12 @@
+
+Circuit: vinamra baghel 190010070 cmos inverter transient characteristics
+
+tr1 = 8.498993e-12
+tf1 = 2.777563e-11
+tr2 = 1.093950e-11
+tf2 = 1.839434e-11
+tr3 = 1.851417e-11
+tf3 = 1.553992e-11
+tout1-tin = 3.528673e-11
+tout2-tin = 2.395435e-11
+tout3-tin = 1.938184e-11

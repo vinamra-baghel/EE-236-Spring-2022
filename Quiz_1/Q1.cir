@@ -1,0 +1,30 @@
+Vinamra Baghel 190010070 Quiz 1 Q1
+
+.include black_box.txt
+.include OpAmp_UA741.txt
+.include Diode_1N914.txt
+
+*Netlist
+X1 in pp nn 1 gnd black_box
+X2 gnd n pp nn out UA741
+r1 1 n 1k
+r2 n out 2k
+r3 in n 2k
+Vpp pp gnd 15
+Vnn nn gnd -15
+Vin in gnd sin(0 1 1k 0 0 0)
+
+*Analysis
+*.tran 1u 5m
+.dc Vin -5 5 0.01
+
+.control
+run
+set color0 = white
+set color1 = black
+set color2 = red
+set color3 = blue
+set xbrushwidth = 2.5
+plot V(out) vs V(in)
+.endc
+.end

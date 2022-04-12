@@ -1,0 +1,6 @@
+
+Circuit: vinamra baghel 190010070 cmos inverter
+
+vth1 = 1.608554e+00
+vth2 = 1.392646e+00
+vth3 = 1.203754e+00

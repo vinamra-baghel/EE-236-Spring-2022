@@ -1,0 +1,36 @@
+Vinamra Baghel 190010070 Quiz 1 Q2
+
+.include X.txt
+.include Y.txt
+
+*Netlist
+r1 in 1 100
+r2 3 gnd 100
+r3 1 gnd 1k
+Dx 1 2 X
+Vdx 2 3 0
+
+r4 in 4 100
+r5 6 gnd 100
+r6 4 gnd 1k
+Dy 4 5 Y
+Vdy 5 6 0
+
+Vin in gnd 0
+
+*Analysis
+.dc Vin -2 0 0.1
+
+.control
+run
+set color0 = white
+set color1 = black
+set color2 = red
+set color3 = blue
+set xbrushwidth = 2
+*plot I(Vdx) vs V(1)-V(2) I(Vdy) vs V(4)-V(5)
+*plot log(I(Vdx)) vs V(1)-V(2) log(I(Vdy)) vs V(4)-V(5)
+*plot I(Vdx) vs V(1)-V(2)
+plot I(Vdy) vs V(4)-V(5)
+.endc
+.end

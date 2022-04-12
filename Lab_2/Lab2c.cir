@@ -1,0 +1,35 @@
+Vinamra Baghel 190010070 Reverse Recovery
+
+.include schottky_BAT85.txt
+.include schottky_BAT960.txt
+.include 1N4007.txt
+
+*Netlist
+r85 in 1 1k
+X85 1 2 BAT85
+Vd1 2 gnd 0
+
+r960 in 3 1k
+X960 3 4 BAT960
+Vd2 4 gnd 0
+
+r in 5 1k
+D 5 6 DI_1N4007
+Vd3 6 gnd 0
+
+Vin in gnd pulse(-1 1 0 0 0 5u 10u)
+
+*Analysis
+.tran 0.1u 10u
+
+.control
+run
+set color0 = white
+set color1 = black
+set color2 = red
+set color3 = blue
+set color4 = brown
+set xbrushwidth = 2
+plot I(Vd1) I(Vd2) I(Vd3)
+.endc
+.end

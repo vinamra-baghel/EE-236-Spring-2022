@@ -1,0 +1,66 @@
+Vinamra Baghel 190010070 Part 1 Id-Vds Characteristics
+
+.include pmos.txt
+
+*Netlist
+M1 d g 0 0 ALD1107
+Vg g 0 dc -2.5
+Vd d 0 dc 0
+
+*Analysis
+.dc Vd 0 -5 -1m Vg -2.5 -4 -0.5
+
+.control
+run
+set color0 = white
+set color1 = black
+set color2 = red
+set color3 = blue
+set xbrushwidth = 3
+
+let Id1 = I(Vd)[0, 5000]
+let Id2 = I(Vd)[5001, 10001]
+let Id3 = I(Vd)[10002, 15002]
+let Id4 = I(Vd)[15003, 20003]
+let Vds1 = V(d)[0, 5000]
+let Vds2 = V(d)[5001, 10001]
+let Vds3 = V(d)[10002, 15002]
+let Vds4 = V(d)[15003, 20003]
+plot Id1 vs Vds1 Id2 vs Vds2 Id3 vs Vds3 Id4 vs Vds4
+
+meas dc i11 find Id1 when Vds1 = -1m
+meas dc i12 find Id1 when Vds1 = -2m
+let rds1 = 1m/(i12-i11)
+meas dc i21 find Id2 when Vds2 = -1m
+meas dc i22 find Id2 when Vds2 = -2m
+let rds2 = 1m/(i22-i21)
+meas dc i31 find Id3 when Vds3 = -1m
+meas dc i32 find Id3 when Vds3 = -2m
+let rds3 = 1m/(i32-i31)
+meas dc i41 find Id4 when Vds4 = -1m
+meas dc i42 find Id4 when Vds4 = -2m
+let rds4 = 1m/(i42-i41)
+
+print rds1 rds2 rds3 rds4
+
+meas dc i511 find Id1 when Vds1 = -4900m
+meas dc i512 find Id1 when Vds1 = -5
+let Vo1 = (-4900m*i512-(-5)*i511)/(i512-i511)
+let ro1 = 100m/(i512-i511)
+meas dc i521 find Id2 when Vds2 = -4900m
+meas dc i522 find Id2 when Vds2 = -5
+let Vo2 = (-4900m*i522-(-5)*i521)/(i522-i521)
+let ro2 = 100m/(i522-i521)
+meas dc i531 find Id3 when Vds3 = -4900m
+meas dc i532 find Id3 when Vds3 = -5
+let Vo3 = (-4900m*i532-(-5)*i531)/(i532-i531)
+let ro3 = 100m/(i532-i531)
+meas dc i541 find Id4 when Vds4 = -4900m
+meas dc i542 find Id4 when Vds4 = -5
+let Vo4 = (-4900m*i542-(-5)*i541)/(i542-i541)
+let ro4 = 100m/(i542-i541)
+
+print Vo1 Vo2 Vo3 Vo4
+print ro1 ro2 ro3 ro4
+.endc
+.end

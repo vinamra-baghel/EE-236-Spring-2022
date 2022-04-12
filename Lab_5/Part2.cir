@@ -1,0 +1,37 @@
+Vinamra Baghel 190010070 Part 2 Id-Vgs Characteristics
+
+.include pmos.txt
+
+*Netlist
+M1 d g 0 0 ALD1107
+Vg g 0 dc -5
+Vd d 0 dc -200m
+
+*Analysis
+.dc Vg -5 0 0.01
+
+.control
+run
+set color0 = white
+set color1 = black
+set color2 = red
+set color3 = blue
+set xbrushwidth = 3
+
+let Id = I(Vd)
+let Vg = V(g)
+plot I(Vd) vs V(g)
+
+meas dc i1 find Id when Vg = -4
+meas dc i2 find Id when Vg = -4010m
+let gm = (i2-i1)/10m
+print gm
+
+let SId = sqrt(Id)
+plot SId vs Vg
+meas dc si1 find SId when Vg = -4
+meas dc si2 find SId when Vg = -4010m
+let k = 2*((si2-si1)/10m)^2
+print k
+.endc
+.end

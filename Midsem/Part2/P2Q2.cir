@@ -1,0 +1,30 @@
+Vinamra Baghel 190010070 Reverse Recovery
+
+.include Diode_1N914.txt
+.include rn142s.txt
+
+*Netlist
+r142 in 1 1k
+D1 1 2 DRN142S
+Vd1 2 gnd 0
+
+r in 5 1k
+D2 5 6 1N914
+Vd2 6 gnd 0
+
+Vin in gnd sin(0 -1 10M 0 0 0)
+
+*Analysis
+.tran 0.1u 50u
+
+.control
+run
+set color0 = white
+set color1 = black
+set color2 = red
+set color3 = blue
+set color4 = brown
+set xbrushwidth = 2
+plot I(Vd1) I(Vd2)
+.endc
+.end

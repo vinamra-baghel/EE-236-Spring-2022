@@ -1,0 +1,5 @@
+
+Circuit: vinamra baghel 190010070 bjt parameters in cb configuration
+
+alpha = 9.949830e-01
+beta = 1.983207e+02

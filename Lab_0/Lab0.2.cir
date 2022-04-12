@@ -1,0 +1,25 @@
+Vinamra Baghel 190010070 Bridge Rectifier
+
+.include Diode_1N914.txt
+
+*Netlist
+rl out1 out2 1k
+D1 in out2 1N914
+D2 out1 in 1N914
+D3 out1 gnd 1N914
+D4 gnd out2 1N914
+Vin in gnd sin(0 12 50 0 0 0)
+
+*Analysis
+.tran 1u 60m
+*Control
+.control
+run
+set color0 = white
+set color1 = black
+set color2 = red
+set color3 = blue
+set xbrushwidth = 2
+plot V(out2) - V(out1) vs V(in)
+.endc
+.end

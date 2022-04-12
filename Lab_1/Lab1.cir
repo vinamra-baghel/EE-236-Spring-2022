@@ -1,0 +1,68 @@
+Vinamra Baghel 190010070 IV Characteristics
+
+.include red_5mm.txt
+.include blue_5mm.txt
+.include green_5mm.txt
+.include white_5mm.txt
+.include Diode_1N914.txt
+
+*Netlist
+r1 in 1 100
+r2 3 gnd 100
+r3 1 gnd 1k
+Dr 1 2 RED
+Vdr 2 3 0
+
+r4 in 4 100
+r5 6 gnd 100
+r6 4 gnd 1k
+Db 4 5 BLUE
+Vdb 5 6 0
+
+r7 in 7 100
+r8 9 gnd 100
+r9 7 gnd 1k
+Dg 7 8 GREEN
+Vdg 8 9 0
+
+r10 in 10 100
+r11 12 gnd 100
+r12 10 gnd 1k
+Dw 10 11 WHITE
+Vdw 11 12 0
+
+r13 in 13 100
+r14 15 gnd 100
+r15 13 gnd 1k
+Da 13 14 1N914
+Vda 14 15 0
+
+Vin in gnd 0
+
+*Analysis
+.dc Vin 0.01 5 0.01
+*Control
+.control
+run
+set color0 = white
+set color1 = black
+set color2 = red
+set color3 = blue
+set color4 = green
+set color5 = navy
+set color6 = orange
+set xbrushwidth = 2
+*plot I(Vdr) vs V(1)-V(2) I(Vdb) vs V(4)-V(5) I(Vdg) vs V(7)-V(8) I(Vdw) vs V(10)-V(11) I(Vda) vs V(13)-V(14)
+plot log(I(Vdr)) vs V(1)-V(2) log(I(Vdb)) vs V(4)-V(5) log(I(Vdg)) vs V(7)-V(8) log(I(Vdw)) vs V(10)-V(11) log(I(Vda)) vs V(13)-V(14)
+let Vd1 = V(1)-V(2) 
+let Vd2 = V(4)-V(5) 
+let Vd3 = V(7)-V(8) 
+let Vd4 = V(10)-V(11) 
+let Vd5 = V(13)-V(14)
+meas dc Vd1 find Vd1 when I(Vdr) = 1m
+meas dc Vd2 find Vd2 when I(Vdr) = 1m
+meas dc Vd3 find Vd3 when I(Vdr) = 1m
+meas dc Vd4 find Vd4 when I(Vdr) = 1m
+meas dc Vd5 find Vd5 when I(Vdr) = 1m
+.endc
+.end

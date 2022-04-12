@@ -1,0 +1,33 @@
+Vinamra Baghel 190010070 Quiz 1 Q3
+
+.include TL071.cir
+.include schottky_bat85.cir
+
+*Netlist
+X1 gnd n1 pp nn 1 TL071
+X2 gnd 2 pp nn out TL071
+X3 1 2 BAT85
+r1 sinin n1 10k
+r2 dcin n1 1k
+rf n1 1 1k
+rfb 2 out 150k
+cfb 2 out 100p
+Vpp pp gnd 15
+Vnn nn gnd -15
+Vdc dcin gnd dc 5 ac 0
+Vsin sinin gnd sin(0 0.5 100k 0 0 0)
+
+*Analysis
+.dc Vdc 0 5 0.01
+
+.control
+run
+set color0 = white
+set color1 = black
+set color2 = red
+set color3 = blue
+set xbrushwidth = 2
+*plot V(out)*100.5613p vs V(1)^2
+plot V(1)/10112.58 vs V(out)^2
+.endc
+.end

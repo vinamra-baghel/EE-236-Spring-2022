@@ -1,0 +1,32 @@
+Vinamra Baghel 190010070 RF Switch
+
+.include Diode_1N914.txt
+.include rn142s.txt
+
+*Netlist
+r1 1 gnd 500
+r2 2 b 500
+r3 out dum2 50
+c1 in 1 100n
+c2 2 out 100n
+D1 2 dum1 DRN142S
+Vd1 1 dum1 0
+Vd2 gnd dum2 0
+Vb b gnd -5
+Vin in gnd sin(0 6 10M 0 0 0)
+
+*Analysis
+.tran 1u 1m
+
+.control
+run
+set color0 = white
+set color1 = black
+set color2 = red
+set color3 = blue
+set xbrushwidth = 3
+plot V(out)
+plot I(Vd2)
+plot I(Vd1)
+.endc
+.end

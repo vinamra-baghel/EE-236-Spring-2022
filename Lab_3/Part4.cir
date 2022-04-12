@@ -1,0 +1,38 @@
+Vinamra Baghel 190010070 Part 4
+
+.include TL071_1.cir
+.include Solar_Cell.txt
+
+*Netlist
+X1 gnd n1 pp nn dut1 TL071
+X2 gnd dut2 pp nn out TL071
+X3 dut1 dut2 solar_cell IL_val = 0
+r1 in1 n1 10k
+r2 in2 n1 1k
+rf n1 dut1 1k
+rfb dut2 out 10k
+cfb dut2 out 4.7n
+Vpp pp gnd 15
+Vnn nn gnd -15
+Vdc in2 gnd 2
+Vsin in1 gnd sin(0 0.5 1k 0 0 0)
+
+*Analysis
+.dc Vdc 0 2 0.01
+
+.control
+run
+set color0 = white
+set color1 = black
+set color2 = red
+set color3 = blue
+set xbrushwidth = 2
+
+plot abs(V(out)/(V(dut2)-V(dut1)))*4.7n*3.530844 vs V(in2)
+
+let C_dut = abs(V(out)/(V(dut2)-V(dut1)))*4.7n*3.530844
+let area = 100u
+let C_norm = C_dut/area
+plot 1/C_norm^2 vs V(dut1)-V(dut2)
+.endc
+.end

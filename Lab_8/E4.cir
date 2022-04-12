@@ -1,0 +1,32 @@
+Vinamra Baghel 190010070 BJT Switching behaviour
+.include BC547.txt
+.include BAT54.txt
+.include 2N3904.txt
+
+*Netlist
+Q1 out b gnd bc547a
+X1 b out BAT54
+rc dd out 1k
+rb in b 1k
+Vin in gnd pulse(0 5 0 0 0 0.5u 1u)
+Vdd dd gnd 5
+
+*Analysis
+.tran 0.01u 2.5u
+
+.control
+run
+set color0 = white
+set color1 = black
+set color2 = red
+set color3 = blue
+set color4 = green
+set color5 = orange
+let Vmin = minimum(V(out))
+*plot V(out) V(in)
+meas tran fall trig v(out) val=1.1*Vmin rise=2 targ v(out) val=4.5 rise=2
+meas tran strg when v(out)=4.5 rise=1
+let turnoff = fall + strg - 0.5u
+print turnoff
+.endc
+.end

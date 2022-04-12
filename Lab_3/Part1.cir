@@ -1,0 +1,49 @@
+Vinamra Baghel 190010070 IV Characteristics Part 1
+
+.include Solar_Cell.txt
+
+*Netlist
+r1 in out1 100
+X1 1 gnd solar_cell IL_val = 0
+Vd1 out1 1 0
+
+r2 in out2 100
+X2 2 gnd solar_cell IL_val = 8e-3
+Vd2 out2 2 0
+
+r3 in out3 100
+X3 3 gnd solar_cell IL_val = 10e-3
+Vd3 out3 3 0
+
+Vin in gnd 0
+
+*Analysis
+.dc Vin -2 2 0.01
+
+.control
+run
+set color0 = white
+set color1 = black
+set color2 = red
+set color3 = blue
+set color4 = green
+set xbrushwidth = 2
+plot I(Vd1) vs V(1) I(Vd2) vs V(2) I(Vd3) vs V(3)
+meas dc i11 find I(Vd1) when V(1) = 500m
+meas dc i21 find I(Vd2) when V(2) = 500m
+meas dc i31 find I(Vd3) when V(3) = 500m
+meas dc i12 find I(Vd1) when V(1) = 450m
+meas dc i22 find I(Vd2) when V(2) = 450m
+meas dc i32 find I(Vd3) when V(3) = 450m
+let il11 = log(abs(i11))
+let il21 = log(abs(i21 + 8m))
+let il31 = log(abs(i31 + 10m))
+let il12 = log(abs(i12))
+let il22 = log(abs(i22 + 8m))
+let il32 = log(abs(i32 + 10m))
+let e1 = 50m/(26m*(il11-il12))
+let e2 = 50m/(26m*(il21-il22))
+let e3 = 50m/(26m*(il31-il32))
+print e1 e2 e3
+.endc
+.end

@@ -1,0 +1,25 @@
+Vinamra Baghel 190010070 RF Resistance
+
+.include rn142s.txt
+
+*Netlist
+r 4 gnd 1k
+D1 2 3 DRN142S
+Vdum 3 dum 0
+Vdc 2 1 
+Vin in gnd sin(0 0.5 10M 0 0 0)
+Ib 4 dum 0.5m
+
+*Analysis
+.dc Ib 0.5m 3m 0.5m
+
+.control
+run
+set color0 = white
+set color1 = black
+set color2 = red
+set color3 = blue
+set xbrushwidth = 3
+plot (V(3)-V(2))/I(Vdum)
+.endc
+.end

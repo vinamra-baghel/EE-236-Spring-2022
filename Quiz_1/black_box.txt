@@ -1,0 +1,10 @@
+*Precision Half wave rectifier subcircuit
+.include OpAmp_UA741.txt
+.include Diode_1N914.txt
+.subckt black_box 6 2 3 5 0
+x1 0 1 2 3 4 UA741
+r1 6 1 1k
+d1 4 1 1N914
+d2 5 4 1N914
+r2 1 5 1k
+.ends

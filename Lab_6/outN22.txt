@@ -1,0 +1,5 @@
+
+Circuit: vinamra baghel 190010070 part 2 id-vgs characteristics
+
+gm = 1.702900e-03
+k = 5.152692e-04

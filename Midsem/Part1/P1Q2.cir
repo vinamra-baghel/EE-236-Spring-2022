@@ -1,0 +1,33 @@
+Vinamra Baghel 190010070 Voltage Regulator
+
+.include bc547.txt
+.include BZT52C18S.txt
+.include ua741.txt
+.include Diode_1N914.txt
+
+*Netlist
+rs in p 52.64
+r1 out n 6k
+r2 n gnd 10k
+rl out gnd 1k
+Xz gnd p DI_BZT52C18S
+Q out b out bc547a
+Xo p n pp nn b ua741
+Vpp pp gnd 12
+Vnn nn gnd -12
+Vs in gnd 25
+
+*Analysis
+*.dc Vs 12 30 0.1
+.dc temp 20 80 10
+
+.control
+run
+set color0 = white
+set color1 = black
+set color2 = red
+set color3 = blue
+set xbrushwidth = 2
+plot V(out)
+.endc
+.end

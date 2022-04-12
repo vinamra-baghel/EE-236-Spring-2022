@@ -1,0 +1,40 @@
+Vinamra Baghel 190010070 CMOS Inverter
+
+.include CMOS.txt
+
+*Netlist
+M11 out1 in dd dd cmosp L=0.4u W=60u AS={2*60u*0.4u} PS={2*60u+4*0.4u} AD={2*60u*0.4u} PD={2*60u+4*0.4u}
+M12 out1 in 0 0 cmosn L=0.4u W=30u AS={2*30u*0.4u} PS={2*30u+4*0.4u} AD={2*30u*0.4u} PD={2*30u+4*0.4u}
+Cl1 out1 0 0.05p
+
+M21 out2 in dd dd cmosp L=0.4u W=60u AS={2*60u*0.4u} PS={2*60u+4*0.4u} AD={2*60u*0.4u} PD={2*60u+4*0.4u}
+M22 out2 in 0 0 cmosn L=0.4u W=60u AS={2*60u*0.4u} PS={2*60u+4*0.4u} AD={2*60u*0.4u} PD={2*60u+4*0.4u}
+Cl2 out2 0 0.05p
+
+M31 out3 in dd dd cmosp L=0.4u W=30u AS={2*30u*0.4u} PS={2*30u+4*0.4u} AD={2*30u*0.4u} PD={2*30u+4*0.4u}
+M32 out3 in 0 0 cmosn L=0.4u W=60u AS={2*60u*0.4u} PS={2*60u+4*0.4u} AD={2*60u*0.4u} PD={2*60u+4*0.4u}
+Cl3 out3 0 0.05p
+
+Vdd dd 0 3.3
+Vin in 0 0
+
+*Analysis
+.dc Vin 0 3.3 0.01
+
+.control
+run
+set color0 = white
+set color1 = black
+set color2 = red
+set color3 = blue
+set color4 = green
+set color5 = orange
+set xbrushwidth = 3
+
+plot V(out1) vs V(in) V(out2) vs V(in) V(out3) vs V(in)
+meas dc Vth1 find V(out1) when V(out1)=V(in)
+meas dc Vth2 find V(out2) when V(out2)=V(in)
+meas dc Vth3 find V(out3) when V(out3)=V(in)
+print Vth1 Vth2 Vth3
+.endc
+.end

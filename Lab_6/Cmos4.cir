@@ -1,0 +1,85 @@
+Vinamra Baghel 190010070 CMOS Inverter Transient Characteristics
+
+.include CMOS.txt
+
+*Netlist
+M11 out1 in1 dd1 dd1 cmosp L=0.4u W=60u AS=48p PS=121.6u AD=48p PD=121.6u
+M12 out1 in1 0 0 cmosn L=0.4u W=30u AS=24p PS=61.6u AD=24p PD=61.6u
+Cl1 out1 0 0.05p
+Vdd1 dd1 0 2
+Vin1 in1 0 pulse(0 2 0 20p 20p 4n 8n 0)
+
+M21 out2 in2 dd2 dd2 cmosp L=0.4u W=60u AS=48p PS=121.6u AD=48p PD=121.6u
+M22 out2 in2 0 0 cmosn L=0.4u W=30u AS=24p PS=61.6u AD=24p PD=61.6u
+Cl2 out2 0 0.05p
+Vdd2 dd2 0 2.2
+Vin2 in2 0 pulse(0 2.2 0 20p 20p 4n 8n 0)
+
+M31 out3 in3 dd3 dd3 cmosp L=0.4u W=60u AS=48p PS=121.6u AD=48p PD=121.6u
+M32 out3 in3 0 0 cmosn L=0.4u W=30u AS=24p PS=61.6u AD=24p PD=61.6u
+Cl3 out3 0 0.05p
+Vdd3 dd3 0 2.4
+Vin3 in3 0 pulse(0 2.4 0 20p 20p 4n 8n 0)
+
+M41 out4 in4 dd4 dd4 cmosp L=0.4u W=60u AS=48p PS=121.6u AD=48p PD=121.6u
+M42 out4 in4 0 0 cmosn L=0.4u W=30u AS=24p PS=61.6u AD=24p PD=61.6u
+Cl4 out4 0 0.05p
+Vdd4 dd4 0 2.6
+Vin4 in4 0 pulse(0 2.6 0 20p 20p 4n 8n 0)
+
+M51 out5 in5 dd5 dd5 cmosp L=0.4u W=60u AS=48p PS=121.6u AD=48p PD=121.6u
+M52 out5 in5 0 0 cmosn L=0.4u W=30u AS=24p PS=61.6u AD=24p PD=61.6u
+Cl5 out5 0 0.05p
+Vdd5 dd5 0 2.8
+Vin5 in5 0 pulse(0 2.8 0 20p 20p 4n 8n 0)
+
+M61 out6 in6 dd6 dd6 cmosp L=0.4u W=60u AS=48p PS=121.6u AD=48p PD=121.6u
+M62 out6 in6 0 0 cmosn L=0.4u W=30u AS=24p PS=61.6u AD=24p PD=61.6u
+Cl6 out6 0 0.05p
+Vdd6 dd6 0 3
+Vin6 in6 0 pulse(0 3 0 20p 20p 4n 8n 0)
+
+M71 out7 in7 dd7 dd7 cmosp L=0.4u W=60u AS=48p PS=121.6u AD=48p PD=121.6u
+M72 out7 in7 0 0 cmosn L=0.4u W=30u AS=24p PS=61.6u AD=24p PD=61.6u
+Cl7 out7 0 0.05p
+Vdd7 dd7 0 3.3
+Vin7 in7 0 pulse(0 3.3 0 20p 20p 4n 8n 0)
+
+*Analysis
+.tran 0.1n 20n
+
+.control
+run
+set color0 = white
+set color1 = black
+set color2 = red
+set color3 = blue
+set color4 = green
+set color5 = orange
+set xbrushwidth = 3
+
+meas tran tin1 when V(in1)=1
+meas tran tin2 when V(in2)=1.1
+meas tran tin3 when V(in3)=1.2
+meas tran tin4 when V(in4)=1.3
+meas tran tin5 when V(in5)=1.4
+meas tran tin6 when V(in6)=1.5
+meas tran tin7 when V(in7)=1.65
+meas tran tout1 when V(out1)=1
+meas tran tout2 when V(out2)=1.1
+meas tran tout3 when V(out3)=1.2
+meas tran tout4 when V(out4)=1.3
+meas tran tout5 when V(out5)=1.4
+meas tran tout6 when V(out6)=1.5
+meas tran tout7 when V(out7)=1.65
+let tp1 = tout1-tin1
+let tp2 = tout2-tin2
+let tp3 = tout3-tin3
+let tp4 = tout4-tin4
+let tp5 = tout5-tin5
+let tp6 = tout6-tin6
+let tp7 = tout7-tin7
+
+print tp1 tp2 tp3 tp4 tp5 tp6 tp7
+.endc
+.end

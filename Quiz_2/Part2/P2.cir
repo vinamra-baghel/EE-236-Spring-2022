@@ -1,0 +1,37 @@
+Vinamra Baghel 190010070 Logic Cells
+
+.include PMOS_NMOS.txt
+
+*Netlist
+M1 out in dis bn cmosn L=0.4u W=1.2u AS={2*1.2u*0.4u} PS={2*1.2u+4*0.4u} AD={2*1.2u*0.4u} PD={2*1.2u+4*0.4u}
+M2 out in dd bp cmosp L=0.4u W=2.85u AS={2*2.85u*0.4u} PS={2*2.85u+4*0.4u} AD={2*2.85u*0.4u} PD={2*2.85u+4*0.4u}
+Cl out 0 200f
+Vbn bn 0 -1
+Vbp bp 0 4.3
+Vdis dis 0 0
+Vdd dd 0 3.3
+Vin in 0 pulse(0 3.3v 0 500p 500p 4500p 10n)
+
+*Analysis
+.tran 0.001n 20n
+
+.control
+run
+set color0 = white
+set color1 = black
+
+plot V(in) V(out)
+
+meas tran rise trig v(out) val=0.33 rise=1 targ v(out) val=2.97 rise=1
+meas tran delay trig v(in) val=1.665 rise=2 targ v(out) val=1.665 fall=2
+meas tran fall trig v(out) val=2.97 fall=1 targ v(out) val=0.33 fall=1
+print rise delay fall
+
+let ipch = -I(Vdd)
+let ipdis = I(Vdis)
+plot ipch ipdis
+
+meas dc Vt1 find V(in) when V(out) = 0.05 rise=2
+meas dc Vt2 find V(in) when V(out) = 3.25 fall=2
+.endc
+.end

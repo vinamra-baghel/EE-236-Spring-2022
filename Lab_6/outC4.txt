@@ -1,0 +1,10 @@
+
+Circuit: vinamra baghel 190010070 cmos inverter transient characteristics
+
+tp1 = 5.442301e-11
+tp2 = 4.947518e-11
+tp3 = 4.548629e-11
+tp4 = 4.204689e-11
+tp5 = 3.973372e-11
+tp6 = 3.785861e-11
+tp7 = 3.552321e-11

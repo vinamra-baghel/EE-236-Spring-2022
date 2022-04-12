@@ -1,0 +1,43 @@
+Vinamra Baghel 190010070 Part 2 Id-Vgs Characteristics
+
+.include ALD1105N.txt
+
+*Netlist
+M1 d g s b ALD1105N
+Vgs g s dc 0
+Vds d s dc 5
+Vsb s b dc 0
+Vb b 0 dc 0
+
+*Analysis
+.dc Vgs 0 5 0.001
+
+.control
+run
+set color0 = white
+set color1 = black
+set color2 = red
+set color3 = blue
+set color4 = green
+set color5 = orange
+set xbrushwidth = 3
+
+let Id = -I(Vds)
+let Vdiff = V(g)-V(s)
+plot Id vs Vdiff
+
+meas dc Vt find Vdiff when Id = 1u
+
+meas dc i1 find Id when Vdiff = 4
+meas dc i2 find Id when Vdiff = 4010m
+let gm = (i2-i1)/10m
+print gm
+
+let SId = sqrt(Id)
+plot SId vs Vdiff
+meas dc si1 find SId when Vdiff = 4
+meas dc si2 find SId when Vdiff = 4010m
+let k = 2*((si2-si1)/10m)^2
+print k
+.endc
+.end

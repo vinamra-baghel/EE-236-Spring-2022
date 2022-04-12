@@ -1,0 +1,29 @@
+Vinamra Baghel 190010070 Voltage Doubler
+
+.include Diode_1N914.txt
+
+*Netlist
+r out gnd 47k
+c1 in 1 10u
+c2 out gnd 10u
+D1 gnd 1 1N914
+D2 1 out 1N914
+Vin in gnd sin(0 20 1k 0 0 0)
+
+*Analysis
+.tran 1u 20m
+
+.control
+run
+set color0 = white
+set color1 = black
+set color2 = red
+set color3 = blue
+set color4 = green
+set color5 = navy
+set color6 = orange
+set xbrushwidth = 2
+plot V(out)
+*print V(1, in)
+.endc
+.end

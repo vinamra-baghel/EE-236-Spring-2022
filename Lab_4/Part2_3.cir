@@ -1,0 +1,30 @@
+Vinamra Baghel 190010070 IV Characteristics Part 2 and 3
+
+.include Solar_Cell.txt
+
+*Netlist
+r1 2 1 1
+X1 1 gnd solar_cell IL_val = 8e-3
+Vd1 2 gnd 0
+
+*Analysis
+.dc r1 1 500 0.01
+
+.temp 35
+.control
+run
+set color0 = white
+set color1 = black
+set color2 = red
+set color3 = blue
+set xbrushwidth = 2
+plot I(Vd1) vs V(1)
+let Vr = V(2)-V(1)
+*plot I(Vd1)*Vr vs V(1)
+*plot I(Vd1)*Vr vs I(Vd1)
+let Pr = I(Vd1)*Vr
+let P_max = minimum(Pr)
+meas dc Vmp find V(1) when Pr = P_max
+meas dc Imp find I(vd1) when V(1) = Vmp
+.endc
+.end

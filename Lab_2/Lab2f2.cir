@@ -1,0 +1,25 @@
+Vinamra Baghel 190010070 TC2
+
+.include Diode_1N914.txt
+
+*Netlist
+r in 1 1k
+D1 1 2 1N914
+D2 3 1 1N914
+V48 2 gnd 4.8
+V40 gnd 3 4
+Vin in gnd 0
+
+*Analysis
+.dc Vin -6 6 0.01
+
+.control
+run
+set color0 = white
+set color1 = black
+set color2 = red
+set color3 = blue
+set xbrushwidth = 2
+plot V(1)
+.endc
+.end

@@ -1,0 +1,7 @@
+
+Circuit: vinamra baghel 190010070 bjt small signal parameters
+
+gm = 1.730769e-01
+beta = 2.105178e+02
+rpi = -1.21632e+03
+ro = 1.622222e+04
